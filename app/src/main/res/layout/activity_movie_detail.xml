@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.text.Html"/>
+        <variable
+            name="MovieDetailViewModel"
+            type="com.demo.tv_maze.ui.moviedetail.MovieDetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/fl_image"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/image_height_detail"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/image_height_detail"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/pic_loading_indicator_1560_878"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_movie_poster_image_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/image_height_detail"
+                    android:scaleType="centerCrop"
+                    app:image_url="@{MovieDetailViewModel.showImageUrl}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    tools:src="@drawable/fake_detail_image" />
+            </FrameLayout>
+
+            <!--        <android.support.design.widget.FloatingActionButton-->
+            <!--            android:id="@+id/fab_favorite"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:src="@drawable/ic_star"-->
+            <!--            app:layout_constraintBottom_toBottomOf="@+id/fl_image"-->
+            <!--            app:layout_constraintRight_toRightOf="@+id/tv_a_plot_synopsis"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/fl_image" />-->
+
+            <TextView
+                android:id="@+id/tv_show_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_detail_horizontal_padding"
+                android:layout_marginLeft="@dimen/activity_detail_horizontal_padding"
+                android:layout_marginTop="@dimen/activity_detail_vertical_padding"
+                android:textSize="26sp"
+                android:textColor="@color/black"
+                android:text="@{MovieDetailViewModel.liveShowName}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fl_image"
+                tools:text="@string/fake_detail_movie_name" />
+
+            <ImageView
+                android:id="@+id/dividing_line_image_and_movie_title"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/activity_detail_vertical_padding"
+                android:background="@color/light_gray"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_show_title" />
+
+            <TextView
+                android:id="@+id/tv_show_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_detail_horizontal_padding"
+                android:layout_marginLeft="@dimen/activity_detail_horizontal_padding"
+                android:layout_marginTop="@dimen/activity_detail_vertical_padding"
+                android:text="@{Html.fromHtml(String.format(MovieDetailViewModel.liveShowDesc))}"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dividing_line_image_and_movie_title" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
